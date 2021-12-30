@@ -1,3 +1,4 @@
+import 'package:example_app/new_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,9 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData.dark(),
       home: const MyHomePage(title: 'Flutter Counter Home Page'),
     );
   }
@@ -53,31 +52,31 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         child: ListView(
           padding: EdgeInsets.zero,
-          children: const <Widget>[
+          children: <Widget>[
             DrawerHeader(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(20),
                 ),
-                color: Colors.blue,
+                color: Theme.of(context).primaryColor, //Colors.blue,
               ),
               child: Text(
                 'Drawer Header',
                 style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
+                  color: Theme.of(context).secondaryHeaderColor, //Colors.white,
+                  fontSize: 36,
                 ),
               ),
             ),
-            ListTile(
+            const ListTile(
               leading: Icon(Icons.message),
               title: Text('Messages'),
             ),
-            ListTile(
+            const ListTile(
               leading: Icon(Icons.account_circle),
               title: Text('Profile'),
             ),
-            ListTile(
+            const ListTile(
               leading: Icon(Icons.settings),
               title: Text('Settings'),
             ),
@@ -102,6 +101,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: Theme.of(context).textTheme.headline4,
               ),
             ),
+            ListTile(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) {
+                    return const Screen();
+                  },
+                ));
+              },
+              title: const Text("Test Tap"),
+            )
           ],
         ),
       ),
