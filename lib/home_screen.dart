@@ -83,8 +83,8 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             ListTile(
-              onTap: () => Navigator.of(context).pushNamed("new_page"),
-              title: const Text("Test Tap"),
+              onTap: () => Navigator.of(context).pushNamed("api_page"),
+              title: const Text("API Request Test"),
             )
           ],
         ),

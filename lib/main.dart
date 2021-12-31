@@ -1,3 +1,4 @@
+import 'package:example_app/api_screen.dart';
 import 'package:example_app/home_screen.dart';
 import 'package:example_app/new_screen.dart';
 import 'package:example_app/splash_screen.dart';
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark(),
       routes: {
         "new_page": (context) => const Screen(),
+        "api_page": (context) => const ApiScreen(),
         "home": (context) =>
             const MyHomePage(title: 'Flutter Counter Home Page'),
       },
