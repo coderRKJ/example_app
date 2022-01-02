@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -11,6 +12,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  final ImagePicker _picker = ImagePicker();
+  String? profilePath;
 
   void _incrementCounter() {
     setState(() {
@@ -53,9 +56,16 @@ class _MyHomePageState extends State<MyHomePage> {
               leading: Icon(Icons.message),
               title: Text('Messages'),
             ),
-            const ListTile(
-              leading: Icon(Icons.account_circle),
-              title: Text('Profile'),
+            ListTile(
+              leading: (profilePath == null) //&& kIsWeb
+                  ? const Icon(Icons.account_circle)
+                  : CircleAvatar(child: Image.network(profilePath!)),
+              title: const Text('Profile'),
+              onTap: () async {
+                final file =
+                    await _picker.pickImage(source: ImageSource.gallery);
+                setState(() => {profilePath = file?.path});
+              },
             ),
             const ListTile(
               leading: Icon(Icons.settings),
@@ -85,7 +95,12 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               onTap: () => Navigator.of(context).pushNamed("api_page"),
               title: const Text("API Request Test"),
-            )
+            ),
+            if (profilePath != null)
+              // Image.file(File(profilePath!))
+              Image.network(profilePath!)
+            else
+              const Center(child: Text("No Profile Set. Go to menu")),
           ],
         ),
       ),
