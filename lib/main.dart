@@ -1,4 +1,5 @@
 import 'package:example_app/api_screen.dart';
+import 'package:example_app/decrement_screen.dart';
 import 'package:example_app/home_screen.dart';
 import 'package:example_app/new_screen.dart';
 import 'package:example_app/splash_screen.dart';
@@ -20,6 +21,8 @@ class MyApp extends StatelessWidget {
       routes: {
         "new_page": (context) => const Screen(),
         "api_page": (context) => const ApiScreen(),
+        "decrement_page": (context) =>
+            const DecrementPage(title: 'Flutter Decrement Page'),
         "home": (context) =>
             const MyHomePage(title: 'Flutter Counter Home Page'),
       },

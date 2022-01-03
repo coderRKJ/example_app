@@ -101,6 +101,10 @@ class _MyHomePageState extends State<MyHomePage> {
               Image.network(profilePath!)
             else
               const Center(child: Text("No Profile Set. Go to menu")),
+            ElevatedButton(
+                onPressed: () =>
+                    Navigator.of(context).pushNamed("decrement_page"),
+                child: const Text("Decrement Page")),
           ],
         ),
       ),
